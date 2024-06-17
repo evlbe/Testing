@@ -10,6 +10,7 @@ p {
 }
 h3 {text-align: center;}
 h2 {text-align: center;}
+h1 {text-align: center;}
 </style>
 </head>
 <body>
@@ -45,6 +46,37 @@ var x = setInterval(function() {
   }
 }, 1000);
 </script>
-<h3>You're almost there, and every second gets you closer</h3>
+</body>
+<head>
+    <title>Days Until August 2</title>
+    <script>
+        function calculateDaysUntil() {
+            const today = new Date();
+            const currentYear = today.getFullYear();
+            const targetDate = new Date(currentYear, 7, 2); // August 2nd of the current year
+            let daysUntil = 0;
+
+            // Loop through each day between today and the target date
+            for (let d = new Date(today); d <= targetDate; d.setDate(d.getDate() + 1)) {
+                const dayOfWeek = d.getDay();
+                if (dayOfWeek !== 0 && dayOfWeek !== 6) { // Exclude Sundays (0) and Saturdays (6)
+                    daysUntil++;
+                }
+            }
+            return daysUntil;
+        }
+
+        function updateDaysUntil() {
+            const daysUntil = calculateDaysUntil();
+            document.getElementById('days-until').innerText = daysUntil;
+        }
+
+        // Update the days until on page load
+        window.onload = updateDaysUntil;
+    </script>
+</head>
+<body>
+    <h1>Workdays Until August 2: <span id="days-until"></span></h1>
+    <h3>You're almost there, and every second gets you closer</h3>
 </body>
 </html>
